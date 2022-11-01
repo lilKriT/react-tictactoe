@@ -1,2 +1,2 @@
-# react-tictactoe
-A tic tac toe game created in React. Following React documentation.
+A tic tac toe game created in React. Following along the React documentation.
+Created by lilKriT.

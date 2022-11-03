@@ -86,7 +86,6 @@ const Game = () => {
   const winner = calculateWinner(current.squares);
 
   const moves = historyTemp.map((step, move) => {
-    // const desc = move ? "Go to move " + move + " ()" : "Go to game start";
     const row = Math.floor(step.latestMove / 3) + 1;
     const col = Math.floor(step.latestMove % 3) + 1;
 
@@ -95,8 +94,16 @@ const Game = () => {
       : "Go to game start";
 
     return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
+      <li
+        key={move}
+        className={move === stepNumber ? "currentMove" : undefined}
+      >
+        <button
+          onClick={() => jumpTo(move)}
+          className={move === stepNumber ? "currentMove" : undefined}
+        >
+          {desc}
+        </button>
       </li>
     );
   });

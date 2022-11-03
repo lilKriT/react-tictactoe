@@ -50,7 +50,6 @@ const Game = () => {
 
   // Clicking on the squares
   const handleClick = (i) => {
-    // const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const historyTemp = history.slice(0, stepNumber + 1);
     const currentTemp = historyTemp[historyTemp.length - 1];
     const squaresTemp = currentTemp.squares.slice();
@@ -68,6 +67,9 @@ const Game = () => {
         },
       ])
     );
+
+    setStepNumber(historyTemp.length);
+    setXIsNext(historyTemp.length % 2 === 0);
   };
 
   const jumpTo = (step) => {
@@ -84,7 +86,7 @@ const Game = () => {
 
     return (
       <li key={move}>
-        <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        <button onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     );
   });

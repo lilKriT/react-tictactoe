@@ -79,7 +79,7 @@ const Game = () => {
 
   const historyTemp = history;
   const current = historyTemp[stepNumber];
-  const winner = calculateWinner(current);
+  const winner = calculateWinner(current.squares);
 
   const moves = historyTemp.map((step, move) => {
     const desc = move ? "Go to move " + move : "Go to game start";

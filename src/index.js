@@ -43,6 +43,7 @@ const Game = () => {
   const [history, setHistory] = useState([
     {
       squares: Array(9).fill(null),
+      latestMove: null,
     },
   ]);
   const [xIsNext, setXIsNext] = useState(true);
@@ -64,12 +65,15 @@ const Game = () => {
       historyTemp.concat([
         {
           squares: squaresTemp,
+          latestMove: i,
         },
       ])
     );
 
     setStepNumber(historyTemp.length);
     setXIsNext(historyTemp.length % 2 === 0);
+
+    console.log(i);
   };
 
   const jumpTo = (step) => {
@@ -82,7 +86,13 @@ const Game = () => {
   const winner = calculateWinner(current.squares);
 
   const moves = historyTemp.map((step, move) => {
-    const desc = move ? "Go to move " + move : "Go to game start";
+    // const desc = move ? "Go to move " + move + " ()" : "Go to game start";
+    const row = Math.floor(step.latestMove / 3) + 1;
+    const col = Math.floor(step.latestMove % 3) + 1;
+
+    const desc = move
+      ? `Go to move ${move} (${col}, ${row})`
+      : "Go to game start";
 
     return (
       <li key={move}>

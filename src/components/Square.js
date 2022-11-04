@@ -2,7 +2,7 @@ const Square = (props) => {
   const { isWinner } = props;
   return (
     <button
-      className={"square" + (true ? " winner" : "")}
+      className={"square" + (isWinner ? " winner" : "")}
       onClick={props.onClick}
     >
       {props.value}

@@ -7,19 +7,12 @@ const Board = ({ squares, onClick, winnerSquares }) => {
         value={squares[i]}
         onClick={() => onClick(i)}
         key={i}
-        isWinner={true}
+        isWinner={winnerSquares.includes(i)}
       />
     );
   };
 
   let [rows, cols] = [3, 3];
-  //   Array(rows)
-  //     .fill("")
-  //     .map((row, rowIndex) =>
-  //       Array(cols)
-  //         .fill("")
-  //         .map((col, colIndex) => console.log(rowIndex * cols + colIndex))
-  //     );
 
   return (
     <div>

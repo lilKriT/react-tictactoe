@@ -13,7 +13,6 @@ const Game = () => {
   const [xIsNext, setXIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
   const [sortingDescending, setSortingDescending] = useState(true);
-  const [winnerSquares, setWinnerSquares] = useState([]);
 
   // Clicking on the squares
   const handleClick = (i) => {
@@ -50,9 +49,11 @@ const Game = () => {
   const winner = calculateWinner(current.squares);
   //   console.log(winner.winner);
 
+  let winnerSquares = [];
   if (winner.winner) {
     console.log("We have a winner");
-    setWinnerSquares(winner.squares);
+    console.log(winner.squares);
+    winnerSquares = winner.squares;
   }
 
   const changeSorting = () => {

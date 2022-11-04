@@ -13,6 +13,7 @@ const Game = () => {
   const [xIsNext, setXIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
   const [sortingDescending, setSortingDescending] = useState(true);
+  const [winnerSquares, setWinnerSquares] = useState(null);
 
   // Clicking on the squares
   const handleClick = (i) => {
@@ -20,7 +21,7 @@ const Game = () => {
     const currentTemp = historyTemp[historyTemp.length - 1];
     const squaresTemp = currentTemp.squares.slice();
 
-    if (calculateWinner(squaresTemp) || squaresTemp[i]) {
+    if (calculateWinner(squaresTemp).winner || squaresTemp[i]) {
       return;
     }
 
@@ -47,6 +48,12 @@ const Game = () => {
   const historyTemp = history.slice();
   const current = historyTemp[stepNumber];
   const winner = calculateWinner(current.squares);
+  //   console.log(winner.winner);
+
+  if (winner.winner) {
+    console.log("We have a winner");
+    setWinnerSquares(winner.squares);
+  }
 
   const changeSorting = () => {
     setSortingDescending(!sortingDescending);
@@ -86,7 +93,11 @@ const Game = () => {
   return (
     <div className="game">
       <div className="game-board">
-        <Board squares={current.squares} onClick={(i) => handleClick(i)} />
+        <Board
+          squares={current.squares}
+          onClick={(i) => handleClick(i)}
+          winnerSquares={winnerSquares}
+        />
       </div>
       <div className="game-info">
         <div>{status}</div>
@@ -112,10 +123,13 @@ const calculateWinner = (squares) => {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], squares: [a, b, c] };
     }
   }
-  return null;
+  return {
+    winner: null,
+    squares: null,
+  };
 };
 
 export default Game;

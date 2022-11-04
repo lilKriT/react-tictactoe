@@ -6,6 +6,12 @@ body {
 ol,
 ul {
   padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+ol.reversed {
+  flex-direction: column-reverse;
 }
 
 .board-row:after {

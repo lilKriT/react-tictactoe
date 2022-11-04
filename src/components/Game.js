@@ -12,6 +12,7 @@ const Game = () => {
   ]);
   const [xIsNext, setXIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
+  const [sortingDescending, setSortingDescending] = useState(true);
 
   // Clicking on the squares
   const handleClick = (i) => {
@@ -36,8 +37,6 @@ const Game = () => {
 
     setStepNumber(historyTemp.length);
     setXIsNext(historyTemp.length % 2 === 0);
-
-    console.log(i);
   };
 
   const jumpTo = (step) => {
@@ -45,9 +44,14 @@ const Game = () => {
     setXIsNext(step % 2 === 0);
   };
 
-  const historyTemp = history;
+  const historyTemp = history.slice();
   const current = historyTemp[stepNumber];
   const winner = calculateWinner(current.squares);
+
+  const changeSorting = () => {
+    setSortingDescending(!sortingDescending);
+    console.log("changing" + sortingDescending);
+  };
 
   const moves = historyTemp.map((step, move) => {
     const row = Math.floor(step.latestMove / 3) + 1;
@@ -86,7 +90,8 @@ const Game = () => {
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>{moves}</ol>
+        <button onClick={changeSorting}>Change sorting method</button>
+        <ol className={sortingDescending ? "" : "reversed"}>{moves}</ol>
       </div>
     </div>
   );

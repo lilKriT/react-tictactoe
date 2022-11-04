@@ -19,12 +19,10 @@ const Board = ({ squares, onClick }) => {
       {Array(rows)
         .fill("")
         .map((row, rowIndex) => (
-          <div className="board-row">
+          <div className="board-row" key={rowIndex}>
             {Array(cols)
               .fill("")
-              .map((col, colIndex) => (
-                <p>1</p>
-              ))}
+              .map((col, colIndex) => renderSquare(colIndex))}
           </div>
         ))}
       {/* <div className="board-row">

@@ -85,12 +85,17 @@ const Game = () => {
   });
 
   let status;
-  if (winner) {
-    status = "Winner: " + winner;
+  if (winner.winner) {
+    status = "Winner: " + winner.winner;
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
 
+  //   console.log("Length: " + history.length);
+  if (history.length === 10 && !winner.winner) {
+    console.log("draw");
+    status = "Draw";
+  }
   return (
     <div className="game">
       <div className="game-board">

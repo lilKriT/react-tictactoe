@@ -7,7 +7,7 @@ const Board = ({ squares, onClick, winnerSquares }) => {
         value={squares[i]}
         onClick={() => onClick(i)}
         key={i}
-        className={"as"}
+        isWinner={true}
       />
     );
   };

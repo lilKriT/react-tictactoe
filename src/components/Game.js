@@ -13,7 +13,7 @@ const Game = () => {
   const [xIsNext, setXIsNext] = useState(true);
   const [stepNumber, setStepNumber] = useState(0);
   const [sortingDescending, setSortingDescending] = useState(true);
-  const [winnerSquares, setWinnerSquares] = useState(null);
+  const [winnerSquares, setWinnerSquares] = useState([]);
 
   // Clicking on the squares
   const handleClick = (i) => {
@@ -128,7 +128,7 @@ const calculateWinner = (squares) => {
   }
   return {
     winner: null,
-    squares: null,
+    squares: [],
   };
 };
 

@@ -59,3 +59,7 @@ ol.reversed {
 .currentMove {
   font-weight: bold;
 }
+
+.winner {
+  background-color: yellow;
+}
